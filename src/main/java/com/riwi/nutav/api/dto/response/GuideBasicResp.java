@@ -20,7 +20,6 @@ public class GuideBasicResp {
     private ChosenGender gender; 
     private ChosenLanguage Language;
     private String nationality; 
-    private String phone;
     private String email; 
     private Integer experience;
     private String description;
