@@ -51,7 +51,7 @@ public class Guide {
     private String phone;
     @Column(length = 100, nullable = false)
     private String email; 
-    private Integer expirience;
+    private Integer experience;
     @Lob
     private String description;
     @Column(nullable = false)
