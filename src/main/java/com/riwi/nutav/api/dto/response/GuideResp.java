@@ -1,10 +1,9 @@
 package com.riwi.nutav.api.dto.response;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import com.riwi.nutav.domain.entities.Reservation;
-import com.riwi.nutav.utils.enums.CategoryTour;
+import com.riwi.nutav.utils.enums.ChosenGender;
 import com.riwi.nutav.utils.enums.ChosenLanguage;
 
 import lombok.AllArgsConstructor;
@@ -16,17 +15,19 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class TourResp {
+public class GuideResp {
     private Long id;
-    private String title;
-    private CategoryTour category;
-    private String place;
-    private Integer duration;
+    private String name;
+    private String lastname; 
+    private int age;
+    private ChosenGender gender;
     private ChosenLanguage Language;
+    private String nationality; 
+    private String email; 
+    private Integer experience;
     private String description;
-    private BigDecimal price;
-
-    private GuideBasicResp guide;
-    private List<Reservation> reservations;
-    private List<MediaBasicResp> media;
+    private String picture; 
+    private List<Reservation> reservations; 
+    
+    //Cambiar reservacion por ReservartionBasicResp
 }
