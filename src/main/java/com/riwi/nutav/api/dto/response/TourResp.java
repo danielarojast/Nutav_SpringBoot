@@ -4,7 +4,6 @@ import java.math.BigDecimal;
 import java.util.List;
 
 import com.riwi.nutav.domain.entities.Guide;
-import com.riwi.nutav.domain.entities.Media;
 import com.riwi.nutav.domain.entities.Reservation;
 import com.riwi.nutav.utils.enums.CategoryTour;
 import com.riwi.nutav.utils.enums.ChosenLanguage;
@@ -18,7 +17,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class TourRe {
+public class TourResp {
     private Long id;
     private String title;
     private CategoryTour category;
@@ -30,6 +29,5 @@ public class TourRe {
 
     private Guide guide;
     private List<Reservation> reservations;
-    private List<Media> media;
-
+    private List<MediaBasicResp> media;
 }
