@@ -1,5 +1,6 @@
 package com.riwi.nutav.domain.entities;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import com.riwi.nutav.utils.enums.ChosenGender;
@@ -63,6 +64,7 @@ public class Guide {
     @Column(nullable = false)
     private String identificationNumber;
     private String guideCertificate;
+    private BigDecimal price;
 
     //Se deben listar las reservas que tenga y los tours que tiene el guia creado
     @OneToMany(mappedBy = "guide", cascade = CascadeType.ALL, orphanRemoval = false)
