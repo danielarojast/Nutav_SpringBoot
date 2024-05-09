@@ -25,10 +25,10 @@ import lombok.NoArgsConstructor;
 public class ClientRequest {
     
     @NotBlank(message = "El nombre es requerido")
-    @Size(min = 0, max = 100)
+    @Size(min = 3, max = 100)
     private String name; 
     @NotBlank(message = "El apellido es requerido")
-    @Size(min = 0, max = 100)
+    @Size(min = 3, max = 100)
     private String lastname;
     @NotNull(message = "La edad es requerida")
     @Min(
