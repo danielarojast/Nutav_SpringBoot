@@ -25,7 +25,6 @@ public class ClientResp {
     private String phone;
     private String email;  
     private String picture; 
-    private List<ReservationBasicClientResp> reservations;
 
 
 }
