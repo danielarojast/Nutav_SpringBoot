@@ -3,7 +3,6 @@ package com.riwi.nutav.api.dto.response;
 import java.math.BigDecimal;
 import java.util.List;
 
-import com.riwi.nutav.domain.entities.Guide;
 import com.riwi.nutav.domain.entities.Reservation;
 import com.riwi.nutav.utils.enums.CategoryTour;
 import com.riwi.nutav.utils.enums.ChosenLanguage;
@@ -27,7 +26,7 @@ public class TourResp {
     private String description;
     private BigDecimal price;
 
-    private Guide guide;
+    private GuideBasicResp guide;
     private List<Reservation> reservations;
     private List<MediaBasicResp> media;
 }
