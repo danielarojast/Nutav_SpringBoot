@@ -44,7 +44,7 @@ public class Guide {
     private ChosenGender gender; 
     @Column(length = 50,nullable = false) 
     @Enumerated(EnumType.STRING)
-    private ChosenLanguage Language;
+    private ChosenLanguage language;
     @Column(length = 100, nullable = false)
     private String nationality; 
     @Column(length = 20, nullable = false)
@@ -63,6 +63,7 @@ public class Guide {
     @Column(nullable = false)
     private String identificationNumber;
     private String guideCertificate;
+
 
     //Se deben listar las reservas que tenga y los tours que tiene el guia creado
     @OneToMany(mappedBy = "guide", cascade = CascadeType.ALL, orphanRemoval = false)

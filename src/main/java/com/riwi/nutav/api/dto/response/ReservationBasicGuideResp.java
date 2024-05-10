@@ -3,6 +3,7 @@ package com.riwi.nutav.api.dto.response;
 import java.sql.Time;
 import java.time.LocalDate;
 
+import com.riwi.nutav.utils.enums.PaymentMethod;
 import com.riwi.nutav.utils.enums.StatusReservation;
 
 import lombok.AllArgsConstructor;
@@ -19,7 +20,8 @@ public class ReservationBasicGuideResp {
     private LocalDate date;
     private Time hour;
     private StatusReservation status;
+    private PaymentMethod paymentMethod;
 
-    private ClientBasicResp client;
+    private ClientResp client;
     private TourBasicResp tour;
 }

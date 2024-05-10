@@ -13,9 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.riwi.nutav.api.dto.request.ClientRequest;
-import com.riwi.nutav.api.dto.response.ClientBasicResp;
 import com.riwi.nutav.api.dto.response.ClientResp;
-import com.riwi.nutav.api.dto.response.GuideBasicResp;
 import com.riwi.nutav.api.dto.response.GuideResp;
 import com.riwi.nutav.api.dto.response.ReservationBasicClientResp;
 import com.riwi.nutav.api.dto.response.TourBasicResp;

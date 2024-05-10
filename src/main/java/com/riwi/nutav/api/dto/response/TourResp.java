@@ -25,7 +25,6 @@ public class TourResp {
     private String description;
     private BigDecimal price;
 
-    private GuideBasicResp guide;
-    private List<ReservationBasicTourResp> reservations;
+    private GuideResp guide;
     private List<MediaBasicResp> media;
 }

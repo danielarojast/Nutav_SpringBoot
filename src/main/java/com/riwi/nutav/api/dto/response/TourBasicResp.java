@@ -1,6 +1,7 @@
 package com.riwi.nutav.api.dto.response;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import com.riwi.nutav.utils.enums.CategoryTour;
 import com.riwi.nutav.utils.enums.ChosenLanguage;
@@ -15,7 +16,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TourBasicResp {
-
     private Long id;
     private String title;
     private CategoryTour category;
@@ -25,4 +25,5 @@ public class TourBasicResp {
     private String description;
     private BigDecimal price;
     
+    private GuideResp guide;
 }

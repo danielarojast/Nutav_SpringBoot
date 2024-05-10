@@ -3,6 +3,9 @@ package com.riwi.nutav.api.dto.request;
 import java.sql.Time;
 import java.time.LocalDate;
 
+import com.riwi.nutav.utils.enums.PaymentMethod;
+import com.riwi.nutav.utils.enums.StatusReservation;
+
 import jakarta.validation.constraints.Future;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
@@ -22,10 +25,10 @@ public class ReservationRequest {
     @NotNull (message = "La fecha es requerida")
     private LocalDate date;
     @NotNull (message = "La hora es requerida")
-    private Time hour; 
-
-    //preguntar si igual hayq ue poner el status o no 
-    //Preguntar como hacer con el id del guia por que se supone que al traer el id del tour trae el guia 
+    private Time hour;
+    private StatusReservation status;
+    @NotNull(message = "El metodo de pago es requerido")
+    private PaymentMethod paymentMethod;
     
     @NotNull(message = "El id del guia es obligatorio")
     @Min(value = 1, message = "El id debe ser mayor a cero ")
