@@ -5,6 +5,7 @@ import java.util.List;
 import com.riwi.nutav.domain.entities.Reservation;
 import com.riwi.nutav.utils.enums.ChosenGender;
 import com.riwi.nutav.utils.enums.ChosenLanguage;
+import com.riwi.nutav.utils.enums.PaymentMethod;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -21,12 +22,13 @@ public class GuideResp {
     private String lastname; 
     private int age;
     private ChosenGender gender;
-    private ChosenLanguage Language;
+    private ChosenLanguage language;
     private String nationality; 
     private String email; 
     private Integer experience;
     private String description;
     private String picture; 
+    private PaymentMethod paymentMethod;
     private List<Reservation> reservations; 
     
     //Cambiar reservacion por ReservartionBasicResp

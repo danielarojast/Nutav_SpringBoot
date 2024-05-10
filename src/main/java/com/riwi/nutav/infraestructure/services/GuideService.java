@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 
 import com.riwi.nutav.api.dto.request.GuideRequest;
 import com.riwi.nutav.api.dto.response.GuideResp;
+import com.riwi.nutav.domain.entities.ClientEntity;
+import com.riwi.nutav.domain.entities.Guide;
 import com.riwi.nutav.domain.repositories.GuideRepository;
 import com.riwi.nutav.infraestructure.abstract_service.IGuideService;
 import com.riwi.nutav.utils.enums.SortType;
@@ -48,5 +50,26 @@ public class GuideService implements IGuideService {
   
         throw new UnsupportedOperationException("Unimplemented method 'getAll'");
     }
+
+    private Guide requestToEntity(GuideRequest request) {
+        return Guide.builder()
+                .name(request.getName())
+                .lastname(request.getLastname())
+                .age(request.getAge())
+                .gender(request.getGender())
+                .language(request.getLanguage())
+                .nationality(request.getNationality())
+                .phone(request.getPhone())
+                .email(request.getEmail())
+                .experience(request.getExperience())
+                .description(request.getDescription())
+                .password(request.getPassword())
+                .picture(request.getPicture())
+                .documentType(request.getDocumentType())
+                .identificationNumber(request.getIdentificationNumber())
+                .guideCertificate(request.getGuideCertificate())
+                .build();
+    }
+
     
 }
