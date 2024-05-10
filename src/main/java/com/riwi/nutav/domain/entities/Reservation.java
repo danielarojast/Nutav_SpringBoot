@@ -29,7 +29,7 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
-    private LocalDate date = LocalDate.now();
+    private LocalDate date;
     @Column (nullable = false)
     private Time hour; 
     @Column(length = 50,nullable = false)

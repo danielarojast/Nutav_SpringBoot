@@ -2,7 +2,6 @@ package com.riwi.nutav.api.dto.response;
 
 import java.util.List;
 
-import com.riwi.nutav.domain.entities.Reservation;
 import com.riwi.nutav.utils.enums.ChosenGender;
 import com.riwi.nutav.utils.enums.ChosenLanguage;
 
@@ -27,7 +26,6 @@ public class GuideResp {
     private Integer experience;
     private String description;
     private String picture; 
-    private List<Reservation> reservations; 
+    private List<ReservationBasicGuideResp> reservations; 
     
-    //Cambiar reservacion por ReservartionBasicResp
 }
