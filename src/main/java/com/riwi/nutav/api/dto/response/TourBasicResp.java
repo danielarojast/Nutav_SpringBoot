@@ -1,6 +1,9 @@
 package com.riwi.nutav.api.dto.response;
 
-import com.riwi.nutav.utils.enums.ChosenGender;
+import java.math.BigDecimal;
+import java.util.List;
+
+import com.riwi.nutav.utils.enums.CategoryTour;
 import com.riwi.nutav.utils.enums.ChosenLanguage;
 
 import lombok.AllArgsConstructor;
@@ -12,16 +15,15 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class GuideBasicResp {
+public class TourBasicResp {
     private Long id;
-    private String name; 
-    private String lastname;
-    private int age;
-    private ChosenGender gender; 
+    private String title;
+    private CategoryTour category;
+    private String place;
+    private Integer duration;
     private ChosenLanguage Language;
-    private String nationality; 
-    private String email; 
-    private Integer experience;
     private String description;
-    private String picture; 
+    private BigDecimal price;
+    
+    private GuideResp guide;
 }
