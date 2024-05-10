@@ -1,5 +1,7 @@
 package com.riwi.nutav.infraestructure.services;
 
-public class ReservationService {
+import com.riwi.nutav.infraestructure.abstract_service.IReservationService;
+
+public class ReservationService implements IReservationService{
     
 }
