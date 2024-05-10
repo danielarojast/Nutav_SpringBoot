@@ -35,7 +35,7 @@ public class GuideRequest {
     private int age;
     @NotBlank(message = "El genero es requerido")
     private ChosenGender gender; 
-    private ChosenLanguage Language;
+    private ChosenLanguage language;
     private String nationality; 
     @NotBlank(message = "El telefono es requerido")
     @Size(min = 10, max = 20)
@@ -44,7 +44,7 @@ public class GuideRequest {
     @Size(min = 1, max = 100, message = "El email debe tener entre 1 y 100 caracteres")
     @Email
     private String email;
-    private Integer expirience;
+    private Integer experience;
     private String description;
     @NotBlank(message = "La contraseña es obligatoria")
     @Size(min = 8, max = 100, message = "La contraseña debe tener minimo 8 caracteres")
