@@ -52,5 +52,7 @@ public class ClientController {
 
 }
 
-
+/*
+ * otro comentario
+ */
 /*en el getAll es necesario poner el sortTypesi no lo voy a organizar por orden alfabetico*/
