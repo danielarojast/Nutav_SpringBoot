@@ -1,5 +1,6 @@
 package com.riwi.nutav.infraestructure.services;
 
+import com.riwi.nutav.utils.enums.SortType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
@@ -8,7 +9,6 @@ import com.riwi.nutav.api.dto.request.GuideRequest;
 import com.riwi.nutav.api.dto.response.GuideResp;
 import com.riwi.nutav.domain.repositories.GuideRepository;
 import com.riwi.nutav.infraestructure.abstract_service.IGuideService;
-import com.riwi.nutav.utils.enums.SortType;
 
 import lombok.AllArgsConstructor;
 
