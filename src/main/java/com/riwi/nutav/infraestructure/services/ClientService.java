@@ -2,6 +2,7 @@ package com.riwi.nutav.infraestructure.services;
 
 import java.sql.Time;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -40,14 +41,16 @@ public class ClientService implements IClientService{
     
     @Override
     public ClientResp create(ClientRequest request) {
-       
-        throw new UnsupportedOperationException("Unimplemented method 'create'");
+        ClientEntity client = this.requestToEntity(request);
+        client.setReservation(new ArrayList<>());
+        return this.entityToResp(this.clientRepository.save(client));
+        
     }
 
     @Override
     public ClientResp get(Long id) {
        
-        throw new UnsupportedOperationException("Unimplemented method 'get'");
+        return this.entityToResp(this.find(id));
     }
 
     @Override
@@ -106,8 +109,9 @@ public class ClientService implements IClientService{
                 .date(entity.getDate())
                 .hour(entity.getHour())
                 .status(entity.getStatus())
-                .guide(guide)
+                .paymentMethod(entity.getPaymentMethod())
                 .tour(tour)
+                .guide(guide)
                 .builder();
     }
     /* 
@@ -135,3 +139,8 @@ public class ClientService implements IClientService{
     }
     */
 }
+
+/*
+ * Hasta que punto es necesaario esa variable reservacion en el EntityTo Response 
+ * 
+ */

@@ -1,6 +1,5 @@
 package com.riwi.nutav.api.dto.response;
 
-import java.util.List;
 
 import com.riwi.nutav.utils.enums.ChosenGender;
 import com.riwi.nutav.utils.enums.ChosenLanguage;
