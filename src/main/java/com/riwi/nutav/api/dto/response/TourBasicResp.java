@@ -1,7 +1,6 @@
 package com.riwi.nutav.api.dto.response;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 import com.riwi.nutav.utils.enums.CategoryTour;
 import com.riwi.nutav.utils.enums.ChosenLanguage;
