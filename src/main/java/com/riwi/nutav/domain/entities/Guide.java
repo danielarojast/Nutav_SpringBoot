@@ -1,12 +1,10 @@
 package com.riwi.nutav.domain.entities;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import com.riwi.nutav.utils.enums.ChosenGender;
 import com.riwi.nutav.utils.enums.ChosenLanguage;
 import com.riwi.nutav.utils.enums.IdentificationType;
-import com.riwi.nutav.utils.enums.PaymentMethod;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -65,10 +63,7 @@ public class Guide {
     @Column(nullable = false)
     private String identificationNumber;
     private String guideCertificate;
-    private BigDecimal price;
-    @Column(length = 50,nullable = false) 
-    @Enumerated(EnumType.STRING)
-    private PaymentMethod paymentMethod;
+
 
     //Se deben listar las reservas que tenga y los tours que tiene el guia creado
     @OneToMany(mappedBy = "guide", cascade = CascadeType.ALL, orphanRemoval = false)

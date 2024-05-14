@@ -43,7 +43,7 @@ public class ClientEntity {
     private ChosenGender gender;
     @Column(length = 50,nullable = false) 
     @Enumerated(EnumType.STRING)
-    private ChosenLanguage Language;
+    private ChosenLanguage language;
     @Column(length = 100, nullable = false)
     private String nationality; 
     @Column(length = 20, nullable = false)

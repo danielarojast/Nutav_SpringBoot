@@ -15,7 +15,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TourBasicResp {
-
     private Long id;
     private String title;
     private CategoryTour category;
@@ -25,4 +24,5 @@ public class TourBasicResp {
     private String description;
     private BigDecimal price;
     
+    private GuideResp guide;
 }

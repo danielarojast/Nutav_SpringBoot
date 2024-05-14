@@ -3,6 +3,7 @@ package com.riwi.nutav.domain.entities;
 import java.sql.Time;
 import java.time.LocalDate;
 
+import com.riwi.nutav.utils.enums.PaymentMethod;
 import com.riwi.nutav.utils.enums.StatusReservation;
 
 import jakarta.persistence.Column;
@@ -29,12 +30,15 @@ public class Reservation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
-    private LocalDate date = LocalDate.now();
+    private LocalDate date;
     @Column (nullable = false)
     private Time hour; 
     @Column(length = 50,nullable = false)
     @Enumerated(EnumType.STRING)
     private StatusReservation status;
+    @Column(length = 50,nullable = false) 
+    @Enumerated(EnumType.STRING)
+    private PaymentMethod paymentMethod;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "guide_id", referencedColumnName = "id")
