@@ -33,7 +33,7 @@ public class GuideRequest {
     @Min(value = 18, message = "Debes ser mayor de 18 años")
     @Max(value = 100, message = "La edad que ingresaste es correcta")
     private int age;
-    @NotBlank(message = "El genero es requerido")
+    @NotNull(message = "El genero es requerido")
     private ChosenGender gender; 
     private ChosenLanguage language;
     private String nationality; 
@@ -51,7 +51,7 @@ public class GuideRequest {
     private String password; 
     @URL
     private String picture; 
-    @NotBlank(message = "El tipo de documento es requerido")
+    @NotNull(message = "El tipo de documento es requerido")
     private IdentificationType documentType;
     @NotBlank(message = "El numero de documento es requerido")
     @Size(min = 8, max = 10)
