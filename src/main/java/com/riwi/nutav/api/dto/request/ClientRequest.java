@@ -40,10 +40,13 @@ public class ClientRequest {
         message = "La edad que ingresaste es incorrecta"
     )
     private int age; 
-    @NotBlank(message = "El genero es requerido")
+    @NotNull(message = "El genero es requerido")
     private ChosenGender gender;
     private ChosenLanguage Language;
     private String nationality; 
+    @NotBlank
+    @Size(min = 6)
+    private String password;
     @NotBlank(message = "El telefono es requerido")
     @Size(min = 10, max = 20)
     private String phone;
@@ -57,7 +60,7 @@ public class ClientRequest {
     private String email; 
     @URL 
     private String picture;
-    @NotBlank(message = "El tipo de documento es requerido")
+    @NotNull(message = "El tipo de documento es requerido")
     private IdentificationType documentType;
     @NotBlank(message = "El numero de documento es requerido")
     @Size(min = 8, max = 10)
