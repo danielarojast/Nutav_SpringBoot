@@ -24,4 +24,5 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long>{
     //Metodo que busca Reserva por tour
     @Query(value = "select a from reservation a join fetch a.tour c where c.id = :idTour")
     Optional<Reservation> findByTourId(Long idTour);
+
 }

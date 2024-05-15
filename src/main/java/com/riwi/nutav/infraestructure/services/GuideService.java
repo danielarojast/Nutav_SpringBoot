@@ -1,6 +1,10 @@
 package com.riwi.nutav.infraestructure.services;
 
 import com.riwi.nutav.utils.enums.SortType;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -11,6 +15,7 @@ import com.riwi.nutav.api.dto.request.GuideRequest;
 import com.riwi.nutav.api.dto.response.GuideResp;
 import com.riwi.nutav.domain.entities.Guide;
 import com.riwi.nutav.domain.repositories.GuideRepository;
+import com.riwi.nutav.domain.repositories.ReservationRepository;
 import com.riwi.nutav.infraestructure.abstract_service.IGuideService;
 import com.riwi.nutav.utils.exceptions.BadRequestException;
 
@@ -104,6 +109,4 @@ public class GuideService implements IGuideService {
                 .guideCertificate(request.getGuideCertificate())
                 .build();
     }
-
-    
 }
