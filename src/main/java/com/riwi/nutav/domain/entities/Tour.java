@@ -47,7 +47,7 @@ public class Tour {
     private Integer duration;
     @Column(length = 50 ,nullable = false) 
     @Enumerated(EnumType.STRING)
-    private ChosenLanguage Language;
+    private ChosenLanguage language;
     @Lob
     private String description;
     @Column(nullable = false)
