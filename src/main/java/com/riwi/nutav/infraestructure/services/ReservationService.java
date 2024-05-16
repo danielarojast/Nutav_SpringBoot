@@ -2,6 +2,8 @@ package com.riwi.nutav.infraestructure.services;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.yaml.snakeyaml.events.Event.ID;
 
 import com.riwi.nutav.api.dto.request.ReservationRequest;
 import com.riwi.nutav.api.dto.response.ClientResp;
@@ -95,7 +98,7 @@ public class ReservationService implements IReservationService {
 
         // El guia esté disponible a esa fecha y hora
         if (this.isGuideAvailable(request.getGuideId(), request.getDate()) != 0) {
-            throw new BadRequestException("EL guia no esta displonible en esta fecha");
+            throw new BadRequestException("EL guia no esta disponible en esta fecha");
         }
 
 
@@ -132,8 +135,28 @@ public class ReservationService implements IReservationService {
             .map(this::entityToResponse);
          
     }
+
+    @Override
+    public List<ReservationResp> getByClientId(Long id) {
+        /*return this.reservationRepository.findByClientId(id).orElseThrow()
+        .map(this::entityToResponse);*/
+        return this.findByClientId(id)
+                    .stream()
+                    .map(this::entityToResponse)
+                    .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<ReservationResp> getByTourId(Long id) {
+        return this.findByTourId(id)
+            .stream()
+            .map(this::entityToResponse)
+            .collect(Collectors.toList());
+    }
+
+    /*------------------------------------------------------------------ */
     
-    //PAra listarlos todos
+    //Para listarlos todos
     private ReservationResp entityToResponse(Reservation entity) {
 
         GuideResp guide = new GuideResp();
@@ -164,6 +187,16 @@ public class ReservationService implements IReservationService {
         .orElseThrow();
     }
 
+    //Buscar por id del cliente
+    private List<Reservation> findByClientId(Long id){
+        return this.reservationRepository.findByClientId(id);
+    }
+
+    //Buscar por id del tour
+    private List<Reservation> findByTourId(Long id){
+        return this.reservationRepository.findByTourId(id);
+    }
+
     // Ver que el guia no tenga reservas la misma fecha (en crear)
     public Long isGuideAvailable(Long guideId, LocalDate date) {
         return reservationRepository.countByGuideIdAndDate(guideId, date);
@@ -179,4 +212,6 @@ public class ReservationService implements IReservationService {
                 .paymentMethod(request.getPaymentMethod())
                 .build();
     }
+
+    
 }
