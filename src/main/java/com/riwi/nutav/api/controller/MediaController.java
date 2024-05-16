@@ -39,5 +39,4 @@ public class MediaController {
             @PathVariable Long id) {
         return ResponseEntity.ok(this.mediaService.get(id));
     }
-    
 }

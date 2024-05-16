@@ -1,7 +1,6 @@
 package com.riwi.nutav.infraestructure.services;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -11,7 +10,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.yaml.snakeyaml.events.Event.ID;
 
 import com.riwi.nutav.api.dto.request.ReservationRequest;
 import com.riwi.nutav.api.dto.response.ClientResp;
