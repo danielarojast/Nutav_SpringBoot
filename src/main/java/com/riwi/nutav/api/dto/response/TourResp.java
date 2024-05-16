@@ -21,7 +21,7 @@ public class TourResp {
     private CategoryTour category;
     private String place;
     private Integer duration;
-    private ChosenLanguage Language;
+    private ChosenLanguage language;
     private String description;
     private BigDecimal price;
 
