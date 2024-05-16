@@ -13,6 +13,6 @@ public class MediaResp {
     private Long id;
     private String url;
 
-    private TourResp tour;
+    private TourBasicResp tour;
 
 }
