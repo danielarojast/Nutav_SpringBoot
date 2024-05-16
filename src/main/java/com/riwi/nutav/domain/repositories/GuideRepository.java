@@ -8,6 +8,11 @@ import com.riwi.nutav.domain.entities.Guide;
 
 @Repository
 public interface GuideRepository extends JpaRepository<Guide, Long>{
-    
-    
+
+    //Metodo para buscar por nombre
+    // public Long findByName( );
+
+    //Metodo para buscar por genero
+
+    //Metodo para buscar por idioma
 }

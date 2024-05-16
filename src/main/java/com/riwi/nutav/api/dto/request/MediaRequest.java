@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class MediaRequest {
 
-    private Long id;
     private String url;
 
     private Long tourId;
