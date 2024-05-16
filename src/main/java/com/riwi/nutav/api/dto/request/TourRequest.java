@@ -21,11 +21,10 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class TourRequest {
-
     @NotBlank(message = "El titulo del tour es requerido")
     @Size(min = 3,max = 100,message = "El titulo debe tener entre 3 y 100 caracteres")
     private String title;
-    @NotBlank(message = "La categoría es requerida")
+    @NotNull(message = "La categoría es requerida")
     private CategoryTour category;
     @NotBlank(message = "El lugar del tour es requerido")
     @Size(min = 3,max = 100,message = "El titulo debe tener entre 3 y 100 caracteres")
@@ -33,8 +32,8 @@ public class TourRequest {
     @NotNull(message = "La duración es requerido")
     @Min(value = 1)
     private Integer duration;
-    @NotBlank(message = "El idioma en que se realizará el tour es requerido")
-    private ChosenLanguage Language;
+    @NotNull(message = "El idioma en que se realizará el tour es requerido")
+    private ChosenLanguage language;
     private String description;
     @NotNull(message = "El precio es requerido")
     @DecimalMin(
@@ -42,7 +41,6 @@ public class TourRequest {
         message = "El valor del servicio debe ser mayor a 0"
     )
     private BigDecimal price;
-
-    private Long GuideId;
-    private List<MediaRequest> Media;
+    private Long guideId;
+    private List<MediaRequest> media;
 }
