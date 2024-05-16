@@ -6,7 +6,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-
 import com.riwi.nutav.api.dto.request.GuideRequest;
 import com.riwi.nutav.api.dto.response.GuideResp;
 import com.riwi.nutav.domain.entities.Guide;
@@ -104,6 +103,4 @@ public class GuideService implements IGuideService {
                 .guideCertificate(request.getGuideCertificate())
                 .build();
     }
-
-    
 }

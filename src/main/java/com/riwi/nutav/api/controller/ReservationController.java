@@ -1,6 +1,6 @@
 package com.riwi.nutav.api.controller;
 
-
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.data.domain.Page;
@@ -17,10 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.riwi.nutav.api.dto.response.ClientResp;
 import com.riwi.nutav.api.dto.errors.ErrorsResp;
-import com.riwi.nutav.api.dto.request.ClientRequest;
-import com.riwi.nutav.infraestructure.abstract_service.IClientService;
+import com.riwi.nutav.api.dto.request.ReservationRequest;
+import com.riwi.nutav.api.dto.response.ReservationResp;
+import com.riwi.nutav.infraestructure.abstract_service.IReservationService;
 import com.riwi.nutav.utils.enums.SortType;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -31,30 +31,30 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 
 @RestController
-@RequestMapping(path = "/clients")
+@RequestMapping(path = "/reservations")
 @AllArgsConstructor
-@Tag(name= "Client")
-public class ClientController {
-    private final IClientService clientService;
+@Tag(name= "Reservation")
+public class ReservationController {
+    
+    private final IReservationService reservationService; 
 
-    /*---GET ALL---*/
+    /*--- GET ALL ---*/
     @Operation(
-        summary = "Lista todos los clientes con paginacion",
-        description = "Debes enviar la pagina y el tamaño para recibir todos los clientes corresponidnetes."
+        summary = "Lista todos las reservaciones paginadas",
+        description = "Debes enviar el numero de pagina y el tamaño para que te liste las reservas correspondientes paginadas."
     )
     @GetMapping
-    public ResponseEntity<Page<ClientResp>> getAll(
+    public ResponseEntity<Page<ReservationResp>> getAll(
             @RequestParam(defaultValue = "1") int page,
             @RequestParam(defaultValue = "10") int size,
             @RequestHeader(required = false) SortType sortType) {
         if (Objects.isNull(sortType))
             sortType = SortType.NONE;
 
-        return ResponseEntity.ok(this.clientService.getAll(page - 1, size, sortType));
+        return ResponseEntity.ok(this.reservationService.getAll(page - 1, size, sortType));
     }
 
     /*---GET BY ID---*/
-    //@ApiResponse es la notacion para el error cuando no esta el id (es para la documentacion).
     @ApiResponse(
         responseCode = "400",
         description = "Cuando el id no es valido",
@@ -66,24 +66,46 @@ public class ClientController {
         }
     )
     @Operation(
-        summary = "Muestra el cliente por Id",
-        description = "Debes enviar el id del cliente que deseas ver."
+        summary = "Muestra las reservas por Id",
+        description = "Debes enviar el id de la reserva que deseas ver."
     )
     @GetMapping(path = "/{id}")
-    public ResponseEntity<ClientResp> get(
+    public ResponseEntity<ReservationResp> get(
             @PathVariable Long id) {
-        return ResponseEntity.ok(this.clientService.get(id));
+        return ResponseEntity.ok(this.reservationService.get(id));
+    }
+
+    /*---GET BY CLIENT---*/
+    @Operation(
+        summary = "Muestra las reservas por cliente",
+        description = "Debes enviar el id del cliente para que te muestre las reservas que este tiene."
+    )
+    @GetMapping(path = "/client/{id}")
+    public ResponseEntity<List<ReservationResp>> getByGuideId(
+            @PathVariable Long id) {
+        return ResponseEntity.ok(this.reservationService.getByClientId(id));
+    }
+
+    /*---GET BY TOUR---*/
+    @Operation(
+        summary = "Muestra las reservas por tour",
+        description = "Debes enviar el id del tour para que te muestre las reservas que este tiene."
+    )
+    @GetMapping(path = "/tour/{id}")
+    public ResponseEntity<List<ReservationResp>> getByTourId(
+            @PathVariable Long id) {
+        return ResponseEntity.ok(this.reservationService.getByTourId(id));
     }
 
     /*---INSERT---*/
     @Operation(
-        summary = "Crea un nuevo cliente",
-        description = "Debes enviar name,lastname, age, gender, language, nationality, password, phone, email, picture, documentType y identificationNumber."
+        summary = "Crea una nueva reserva",
+        description = "Debes enviar date, hour, status, paymentMethod, guideId, clientId, tourId."
     )
     @PostMapping
-    public ResponseEntity<ClientResp> insert(
-            @Validated @RequestBody ClientRequest request) {
-        return ResponseEntity.ok(this.clientService.create(request));
+    public ResponseEntity<ReservationResp>insert(
+        @Validated @RequestBody ReservationRequest request) {
+        return ResponseEntity.ok(this.reservationService.create(request));
     }
 
     /*--- UPDATE ---*/
@@ -98,14 +120,14 @@ public class ClientController {
         }
     )
     @Operation(
-        summary = "Actualiza la informacion de un cliente existente",
-        description = "Debes enviar el id del cliente que deseas actualizar."
+        summary = "Actualiza la informacion de una reserva existente",
+        description = "Debes enviar el id de la reserva que deseas actualizar."
     )
     @PutMapping(path = "/{id}")
-    public ResponseEntity<ClientResp> update(
-            @Validated @RequestBody ClientRequest request,
+    public ResponseEntity<ReservationResp> update(
+            @Validated @RequestBody ReservationRequest request,
             @PathVariable Long id) {
-        return ResponseEntity.ok(this.clientService.update(request, id));
+        return ResponseEntity.ok(this.reservationService.update(request, id));
     }
 
     /*--- DELETE ---*/
@@ -120,13 +142,15 @@ public class ClientController {
         }
     )
     @Operation(
-        summary = "Elimina un cliente con el id",
-        description = "Debes enviar el id del cliente que deseas eliminar."
+        summary = "Elimina una reserva con el id",
+        description = "Debes enviar el id de la reserva que deseas eliminar."
     )
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
-        this.clientService.delete(id);
+        this.reservationService.delete(id);
         return ResponseEntity.noContent().build();
     }
+    
 
+    
 }

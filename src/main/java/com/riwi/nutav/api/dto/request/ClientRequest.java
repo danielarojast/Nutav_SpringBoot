@@ -42,7 +42,7 @@ public class ClientRequest {
     private int age; 
     @NotNull(message = "El genero es requerido")
     private ChosenGender gender;
-    private ChosenLanguage Language;
+    private ChosenLanguage language;
     private String nationality; 
     @NotBlank
     @Size(min = 6)
