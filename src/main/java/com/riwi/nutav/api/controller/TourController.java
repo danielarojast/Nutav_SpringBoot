@@ -21,11 +21,13 @@ import com.riwi.nutav.api.dto.response.TourResp;
 import com.riwi.nutav.infraestructure.abstract_service.ITourService;
 import com.riwi.nutav.utils.enums.SortType;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping(path = "/tours")
 @AllArgsConstructor
+@Tag(name = "Tours")
 public class TourController {
 
     private final ITourService service;

@@ -22,11 +22,13 @@ import com.riwi.nutav.api.dto.response.GuideResp;
 import com.riwi.nutav.infraestructure.abstract_service.IGuideService;
 import com.riwi.nutav.utils.enums.SortType;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 
 @RestController
 @RequestMapping(path = "/guides")
 @AllArgsConstructor
+@Tag(name= "Guides")
 public class GuideController {
 
     @Autowired
