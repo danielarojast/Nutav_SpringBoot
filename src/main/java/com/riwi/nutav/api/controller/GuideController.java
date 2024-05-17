@@ -1,5 +1,6 @@
 package com.riwi.nutav.api.controller;
 
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +18,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.riwi.nutav.api.dto.errors.ErrorsResp;
 import com.riwi.nutav.api.dto.request.GuideRequest;
 import com.riwi.nutav.api.dto.response.GuideResp;
 import com.riwi.nutav.infraestructure.abstract_service.IGuideService;
+import com.riwi.nutav.utils.enums.ChosenGender;
+import com.riwi.nutav.utils.enums.ChosenLanguage;
 import com.riwi.nutav.utils.enums.SortType;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.AllArgsConstructor;
 
@@ -34,6 +42,10 @@ public class GuideController {
     @Autowired
     private final IGuideService guideService;
 
+    @Operation(
+        summary = "Lista todos los guias con paginacion",
+        description = "Debes enviar la pagina y el tamaño para recibir todos los guias corresponidnetes."
+    )
     @GetMapping
     public ResponseEntity<Page<GuideResp>> getAll(
             @RequestParam(defaultValue = "1") int page,
@@ -45,28 +57,92 @@ public class GuideController {
         return ResponseEntity.ok(this.guideService.getAll(page - 1, size, sortType));
     }
 
+    @ApiResponse(
+        responseCode = "400",
+        description = "Cuando el id no es valido",
+        content = {
+            @Content(
+                mediaType = "application/json",
+                schema = @Schema(implementation = ErrorsResp.class)
+            )
+        }
+    )
+    @Operation(
+        summary = "Muestra el guia por Id",
+        description = "Debes enviar el id del guia que deseas ver."
+    )
     @GetMapping(path = "/{id}")
     public ResponseEntity<GuideResp> get(
             @PathVariable Long id) {
         return ResponseEntity.ok(this.guideService.get(id));
     }
 
+    @Operation(
+        summary = "Crea un nuevo guia",
+        description = "Debes enviar name,lastname, age, gender, language, nationality, phone, email,experience,description,password, picture, documentType y identificationNumber, guide certificate."
+    )
     @PostMapping
     public ResponseEntity<GuideResp> insert(
             @Validated @RequestBody GuideRequest request) {
         return ResponseEntity.ok(this.guideService.create(request));
     }
 
-     @PutMapping(path = "/{id}")
+    @ApiResponse(
+        responseCode = "400",
+        description = "Cuando el id no es valido",
+        content = {
+            @Content(
+                mediaType = "application/json",
+                schema = @Schema(implementation = ErrorsResp.class)
+            )
+        }
+    )
+    @Operation(
+        summary = "Actualiza la informacion de un guia existente",
+        description = "Debes enviar el id del guia que deseas actualizar."
+    )
+    @PutMapping(path = "/{id}")
     public ResponseEntity<GuideResp> update(
             @Validated @RequestBody GuideRequest request,
             @PathVariable Long id) {
         return ResponseEntity.ok(this.guideService.update(request, id));
     }
 
+    @ApiResponse(
+        responseCode = "400",
+        description = "Cuando el id no es valido",
+        content = {
+            @Content(
+                mediaType = "application/json",
+                schema = @Schema(implementation = ErrorsResp.class)
+            )
+        }
+    )
+    @Operation(
+        summary = "Elimina un guia con el id",
+        description = "Debes enviar el id del guia que deseas eliminar."
+    )
     @DeleteMapping(path = "/{id}")
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         this.guideService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping(path = "/name/{name}")
+    public ResponseEntity <List<GuideResp>> getName(
+            @PathVariable String name) {
+        return ResponseEntity.ok(this.guideService.findByNameContains(name));
+    }
+
+    @GetMapping(path = "/gender/{gender}")
+    public ResponseEntity <List<GuideResp>> getGender(
+            @PathVariable String gender) {
+        return ResponseEntity.ok(this.guideService.findByGender(ChosenGender.valueOf(gender)));
+    }
+
+    @GetMapping(path = "/language/{language}")
+    public ResponseEntity <List<GuideResp>> getLanguage(
+            @PathVariable String language) {
+        return ResponseEntity.ok(this.guideService.findByLanguage(ChosenLanguage.valueOf(language)));
     }
 }
