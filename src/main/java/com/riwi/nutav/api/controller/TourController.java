@@ -1,5 +1,6 @@
 package com.riwi.nutav.api.controller;
 
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.data.domain.Page;
@@ -20,6 +21,8 @@ import com.riwi.nutav.api.dto.errors.ErrorsResp;
 import com.riwi.nutav.api.dto.request.TourRequest;
 import com.riwi.nutav.api.dto.response.TourResp;
 import com.riwi.nutav.infraestructure.abstract_service.ITourService;
+import com.riwi.nutav.utils.enums.CategoryTour;
+import com.riwi.nutav.utils.enums.ChosenLanguage;
 import com.riwi.nutav.utils.enums.SortType;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -122,5 +125,23 @@ public class TourController {
         @Validated @RequestBody TourRequest request
     ){
         return  ResponseEntity.ok(this.service.create(request));
+    }
+
+    @GetMapping(path = "/category/{category}")
+    public ResponseEntity <List<TourResp>> getCategory(
+            @PathVariable String category) {
+        return ResponseEntity.ok(this.service.findByCategory(CategoryTour.valueOf(category)));
+    }
+
+    @GetMapping(path = "/language/{language}")
+    public ResponseEntity <List<TourResp>> getLanguage(
+            @PathVariable String language) {
+        return ResponseEntity.ok(this.service.findByLanguage(ChosenLanguage.valueOf(language)));
+    }
+
+    @GetMapping(path = "/place/{place}")
+    public ResponseEntity <List<TourResp>> getPlace(
+            @PathVariable String place) {
+        return ResponseEntity.ok(this.service.findByPlace(place));
     }
 }

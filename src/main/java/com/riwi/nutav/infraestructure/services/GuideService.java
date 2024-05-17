@@ -112,7 +112,6 @@ public class GuideService implements IGuideService {
 
     @Override
     public List<GuideResp> findByNameContains(String name) {
-      
         return this.guideRepository.findByNameContains(name)
         .stream()
         .map(this::entityToResponse)

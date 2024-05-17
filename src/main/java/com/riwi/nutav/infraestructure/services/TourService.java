@@ -22,6 +22,8 @@ import com.riwi.nutav.domain.entities.Tour;
 import com.riwi.nutav.domain.repositories.GuideRepository;
 import com.riwi.nutav.domain.repositories.TourRepository;
 import com.riwi.nutav.infraestructure.abstract_service.ITourService;
+import com.riwi.nutav.utils.enums.CategoryTour;
+import com.riwi.nutav.utils.enums.ChosenLanguage;
 import com.riwi.nutav.utils.enums.SortType;
 import com.riwi.nutav.utils.exceptions.BadRequestException;
 
@@ -150,5 +152,29 @@ public class TourService implements ITourService {
     private Tour find(Long id){
         return this.tourRepository.findById(id)
             .orElseThrow(()-> new BadRequestException("No hay registros con el id suministrado"));
+    }
+
+    @Override
+    public List<TourResp> findByCategory(CategoryTour category) {
+        return this.tourRepository.findByCategory(category)
+        .stream()
+        .map(this::entityTourToResponse)
+        .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<TourResp> findByLanguage(ChosenLanguage language) {
+        return this.tourRepository.findByLanguage(language)
+        .stream()
+        .map(this::entityTourToResponse)
+        .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<TourResp> findByPlace(String place) {
+        return this.tourRepository.findByPlace(place)
+        .stream()
+        .map(this::entityTourToResponse)
+        .collect(Collectors.toList());
     }
 }
