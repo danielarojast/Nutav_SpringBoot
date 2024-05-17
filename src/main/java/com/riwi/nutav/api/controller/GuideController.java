@@ -128,18 +128,30 @@ public class GuideController {
         return ResponseEntity.noContent().build();
     }
 
+    @Operation(
+        summary = "Buscar guias por nombre",
+        description = "Debes enviar el nombre del guias corresponidnete."
+    )
     @GetMapping(path = "/name/{name}")
     public ResponseEntity <List<GuideResp>> getName(
             @PathVariable String name) {
         return ResponseEntity.ok(this.guideService.findByNameContains(name));
     }
 
+    @Operation(
+        summary = "Buscar guias por genero",
+        description = "Debes escribir el genero MASCULINO O FEMENINO."
+    )
     @GetMapping(path = "/gender/{gender}")
     public ResponseEntity <List<GuideResp>> getGender(
             @PathVariable String gender) {
         return ResponseEntity.ok(this.guideService.findByGender(ChosenGender.valueOf(gender)));
     }
 
+    @Operation(
+        summary = "Buscar guias por idioma",
+        description = "Debes enviar el idioma del guia que buscas."
+    )
     @GetMapping(path = "/language/{language}")
     public ResponseEntity <List<GuideResp>> getLanguage(
             @PathVariable String language) {
