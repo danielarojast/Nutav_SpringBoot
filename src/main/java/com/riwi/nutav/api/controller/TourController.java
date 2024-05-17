@@ -129,18 +129,30 @@ public class TourController {
         return  ResponseEntity.ok(this.service.create(request));
     }
 
+    @Operation(
+        summary = "Buscar por categoria",
+        description = "Debes enviar la categoria corresponidnete ."
+    )
     @GetMapping(path = "/category/{category}")
     public ResponseEntity <List<TourResp>> getCategory(
             @PathVariable String category) {
         return ResponseEntity.ok(this.service.findByCategory(CategoryTour.valueOf(category)));
     }
 
+    @Operation(
+        summary = "Buscar tour por idioma",
+        description = "Debes enviar el idioma corresponidnete ESPAÑOL/INGLES ."
+    )
     @GetMapping(path = "/language/{language}")
     public ResponseEntity <List<TourResp>> getLanguage(
             @PathVariable String language) {
         return ResponseEntity.ok(this.service.findByLanguage(ChosenLanguage.valueOf(language)));
     }
 
+    @Operation(
+        summary = "Buscar por lugar",
+        description = "Debes enviar el lugar corresponidnete ."
+    )
     @GetMapping(path = "/place/{place}")
     public ResponseEntity <List<TourResp>> getPlace(
             @PathVariable String place) {
