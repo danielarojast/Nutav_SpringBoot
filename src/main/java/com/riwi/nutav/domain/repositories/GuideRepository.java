@@ -14,7 +14,6 @@ import com.riwi.nutav.utils.enums.ChosenLanguage;
 public interface GuideRepository extends JpaRepository<Guide, Long>{
 
     //Metodo para buscar por nombre
-
     List<Guide> findByNameContains(String name);
 
     //Metodo para buscar por genero
