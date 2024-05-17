@@ -210,6 +210,4 @@ public class ReservationService implements IReservationService {
                 .paymentMethod(request.getPaymentMethod())
                 .build();
     }
-
-    
 }
