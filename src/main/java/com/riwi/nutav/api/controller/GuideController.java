@@ -1,11 +1,13 @@
 package com.riwi.nutav.api.controller;
 
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +23,8 @@ import com.riwi.nutav.api.dto.errors.ErrorsResp;
 import com.riwi.nutav.api.dto.request.GuideRequest;
 import com.riwi.nutav.api.dto.response.GuideResp;
 import com.riwi.nutav.infraestructure.abstract_service.IGuideService;
+import com.riwi.nutav.utils.enums.ChosenGender;
+import com.riwi.nutav.utils.enums.ChosenLanguage;
 import com.riwi.nutav.utils.enums.SortType;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -33,6 +37,7 @@ import lombok.AllArgsConstructor;
 @RestController
 @RequestMapping(path = "/guides")
 @AllArgsConstructor
+@CrossOrigin(origins="*")
 @Tag(name= "Guides")
 public class GuideController {
 
@@ -123,5 +128,23 @@ public class GuideController {
     public ResponseEntity<Void> delete(@PathVariable Long id) {
         this.guideService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping(path = "/name/{name}")
+    public ResponseEntity <List<GuideResp>> getName(
+            @PathVariable String name) {
+        return ResponseEntity.ok(this.guideService.findByNameContains(name));
+    }
+
+    @GetMapping(path = "/gender/{gender}")
+    public ResponseEntity <List<GuideResp>> getGender(
+            @PathVariable String gender) {
+        return ResponseEntity.ok(this.guideService.findByGender(ChosenGender.valueOf(gender)));
+    }
+
+    @GetMapping(path = "/language/{language}")
+    public ResponseEntity <List<GuideResp>> getLanguage(
+            @PathVariable String language) {
+        return ResponseEntity.ok(this.guideService.findByLanguage(ChosenLanguage.valueOf(language)));
     }
 }

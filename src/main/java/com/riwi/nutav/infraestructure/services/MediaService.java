@@ -40,8 +40,7 @@ public class MediaService implements IMediaService {
 
     @Override
     public MediaResp get(Long id) {
-
-        throw new UnsupportedOperationException("Unimplemented method 'get'");
+        return this.entityToResponseMedia(this.find(id));
     }
 
     @Override

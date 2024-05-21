@@ -1,6 +1,12 @@
 package com.riwi.nutav.infraestructure.services;
 
+import com.riwi.nutav.utils.enums.ChosenGender;
+import com.riwi.nutav.utils.enums.ChosenLanguage;
 import com.riwi.nutav.utils.enums.SortType;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -103,4 +109,31 @@ public class GuideService implements IGuideService {
                 .guideCertificate(request.getGuideCertificate())
                 .build();
     }
+
+    @Override
+    public List<GuideResp> findByNameContains(String name) {
+        return this.guideRepository.findByNameContains(name)
+        .stream()
+        .map(this::entityToResponse)
+        .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<GuideResp> findByGender(ChosenGender gender) {
+
+        return this.guideRepository.findByGender(gender)
+        .stream()
+        .map(this::entityToResponse)
+        .collect(Collectors.toList());
+    }
+
+    @Override
+    public List<GuideResp> findByLanguage(ChosenLanguage language) {
+
+        return this.guideRepository.findByLanguage(language)
+        .stream()
+        .map(this::entityToResponse)
+        .collect(Collectors.toList());
+    }
 }
+        
