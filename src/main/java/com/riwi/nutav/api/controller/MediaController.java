@@ -2,6 +2,7 @@ package com.riwi.nutav.api.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,6 +25,7 @@ import lombok.AllArgsConstructor;
 @RestController
 @RequestMapping(path = "/medias")
 @AllArgsConstructor
+@CrossOrigin(origins="*")
 public class MediaController {
 
     private final IMediaService mediaService;
