@@ -67,6 +67,7 @@ public class TourController {
             )
         }
     )
+
     @Operation(
         summary = "Muestra el tour por Id",
         description = "Debes enviar el id del tour que deseas ver."
@@ -106,6 +107,7 @@ public class TourController {
             )
         }
     )
+    
     @Operation(
         summary = "Actualiza la informacion de un tour existente",
         description = "Debes enviar el id del tour que deseas actualizar."
